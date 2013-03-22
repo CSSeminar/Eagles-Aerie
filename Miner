@@ -1,0 +1,45 @@
+
+public class Miner 
+{
+  int dir;
+	int row;
+	int col;
+	//what is it the third row, col, w/e in a 3d array
+	public Miner(int startRow, int startCol)
+	{
+		row = startRow;
+		col = startCol;
+		dir= 0;
+	}
+	public int getRow()
+	{
+		return row;
+	}
+	public int getCol()
+	{
+		return col;
+	}
+	public void setRow(int r)
+	{
+		row = r;
+	}
+	public void setCol(int c)
+	{
+		col = c;
+	}
+	public void mine()
+	{
+		dir = (int)(Math.random() * 4 + 1);
+		switch(dir)
+		{
+		case 1: col++;
+		break;
+		case 2: row++;
+		break;
+		case 3: col--;
+		break;
+		case 4: row--;
+		break;
+		}
+	}
+}
