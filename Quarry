@@ -1,0 +1,54 @@
+
+public class Quarry 
+{
+  private int[][] buildArr(int numRows, int numCols)
+	{
+		int[][] nums = new int[numRows][numCols];
+		for (int i = 0; i < nums.length; i++)
+		{
+			for (int j = 0; j < nums[i].length; j++)
+				nums[i][j] = 0;
+		}
+		return nums;
+	}
+	private int[][] mine(int[][] nums, int numMiners, int numIterations)
+	{
+		Miner m = new Miner(nums.length/2, nums[1].length/2);
+		for (int i = 0; i < numMiners; i++)
+		{
+			m.setRow(nums.length/2);
+			m.setCol(nums[1].length/2);
+			for (int j = 0; j < numIterations; j++)
+			{
+				if (m.getRow() >= nums.length || m.getRow() < 0 || m.getCol() >= nums[0].length || m.getCol() < 0)
+				{
+					m.setRow(nums.length/2);
+					m.setCol(nums[1].length/2);
+				}
+				nums[m.getRow()][m.getCol()] = 1;
+				m.mine();
+			}
+		}
+		return nums;
+	}
+	public  String toString(int[][] nums)
+	{
+		String str = "";
+			for (int i = 0; i < nums.length; i++)
+			{
+				for(int j = 0; j < nums[i].length; j++)
+				{
+					str += nums[i][j];
+				}
+				str += "\n";
+			}
+			return str;
+		}
+	public static void main(String[] args)
+	{
+		Quarry q = new Quarry();
+		int[][] nums = q.buildArr(15,40);
+		nums = q.mine(nums, 10, 50);
+		System.out.print(q.toString(nums));	
+	}
+}
